@@ -6,11 +6,11 @@ import router from "./routes/contactRoutes.js";
 const app = express();
 app.use(express.json());
 app.use(helmet());
-app.use(
-  cors({
-    origin: process.env.FRONT_URL,
-  })
-);
+app.use(cors({
+  origin: process.env.FRONT_URL || "http://localhost:5173", 
+  methods: ['GET', 'POST', 'PUT', 'DELETE'],
+  allowedHeaders: ['Content-Type']
+}));
 
 
 app.use("/api", router);

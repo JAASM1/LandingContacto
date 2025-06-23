@@ -1,27 +1,27 @@
-import { useState } from 'react';
-import './Landing.css';
-import LogoRT from './images/LogoRT.png';
-import fondoLanding from './images/fondolanding.png';
+import { useState } from "react";
+import "./Landing.css";
+import LogoRT from "./images/LogoRT.png";
+import fondoLanding from "./images/fondolanding.png";
 
 function LandingPage() {
   const [formData, setFormData] = useState({
-    nombreCompleto: '',
-    correo: '',
-    telefono: '',
-    mensaje: ''
+    nombreCompleto: "",
+    correo: "",
+    telefono: "",
+    mensaje: "",
   });
 
   const [submitStatus, setSubmitStatus] = useState({
     loading: false,
     success: false,
-    error: null
+    error: null,
   });
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setFormData(prev => ({
+    setFormData((prev) => ({
       ...prev,
-      [name]: value
+      [name]: value,
     }));
   };
 
@@ -30,9 +30,9 @@ function LandingPage() {
     setSubmitStatus({ loading: true, error: null });
 
     try {
-      const response = await fetch('http://localhost:3000/api/contact', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+      const response = await fetch("http://localhost:3000/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify(formData),
       });
 
@@ -43,13 +43,17 @@ function LandingPage() {
 
       const data = await response.json();
       setSubmitStatus({ success: true, loading: false });
-      setFormData({ nombreCompleto: '', correo: '', telefono: '', mensaje: '' });
-
+      setFormData({
+        nombreCompleto: "",
+        correo: "",
+        telefono: "",
+        mensaje: "",
+      });
     } catch (error) {
-      console.error('Error completo:', error);
+      console.error("Error completo:", error);
       setSubmitStatus({
-        error: error.message || 'Error al conectar con el servidor',
-        loading: false
+        error: error.message || "Error al conectar con el servidor",
+        loading: false,
       });
     }
   };
@@ -62,11 +66,18 @@ function LandingPage() {
           <img src={LogoRT} alt="Riviera Travel Logo" className="navbar-logo" />
         </div>
         <ul className="nav-links">
-          <li><a href="#home">Home</a></li>
-          <li><a href="#about">About</a></li>
-          <li><a href="#packages">Packages</a></li>
-          <li><a href="#blog">Blog</a></li>
-          <li><a href="#contact">Contact</a></li>
+          <li>
+            <a href="#home">Home</a>
+          </li>
+          <li>
+            <a href="#about">About</a>
+          </li>
+          <li>
+            <a href="#packages">Packages</a>
+          </li>
+          <li>
+            <a href="#contact">Contact</a>
+          </li>
         </ul>
         <button className="book-btn">Book Now</button>
       </nav>
@@ -86,9 +97,10 @@ function LandingPage() {
         <div className="section-container">
           <h2 className="section-title">Sobre Riviera Travel</h2>
           <p className="section-text">
-            Somos especialistas en crear experiencias de viaje inolvidables en la Riviera Maya.
-            Con más de 10 años de experiencia, nos enorgullecemos de ofrecer servicios personalizados
-            y atención al detalle para que tu viaje sea perfecto.
+            Somos especialistas en crear experiencias de viaje inolvidables en
+            la Riviera Maya. Con más de 10 años de experiencia, nos
+            enorgullecemos de ofrecer servicios personalizados y atención al
+            detalle para que tu viaje sea perfecto.
           </p>
           <div className="stats-container">
             <div className="stat-item">
@@ -111,29 +123,58 @@ function LandingPage() {
       <section id="packages" className="packages-section">
         <div className="section-container">
           <h2 className="section-title">Nuestros Paquetes</h2>
-          <p className="section-text">Descubre nuestras opciones de viaje cuidadosamente diseñadas</p>
+          <p className="section-text">
+            Descubre nuestras opciones de viaje cuidadosamente diseñadas
+          </p>
 
           <div className="packages-grid">
             <div className="package-card">
-              <div className="package-image" style={{ backgroundImage: "url('https://images.unsplash.com/photo-1506929562872-bb421503ef21')" }}></div>
+              <div
+                className="package-image"
+                style={{
+                  backgroundImage:
+                    "url('https://images.unsplash.com/photo-1506929562872-bb421503ef21')",
+                }}
+              ></div>
               <h3>Aventura en la Selva</h3>
-              <p>Explora ruinas mayas y cenotes en este paquete lleno de aventura.</p>
+              <p>
+                Explora ruinas mayas y cenotes en este paquete lleno de
+                aventura.
+              </p>
               <div className="package-price">$899 USD</div>
               <button className="package-btn">Más Información</button>
             </div>
 
             <div className="package-card">
-              <div className="package-image" style={{ backgroundImage: "url('https://images.unsplash.com/photo-1505228395891-9a51e7e86bf6')" }}></div>
+              <div
+                className="package-image"
+                style={{
+                  backgroundImage:
+                    "url('https://images.unsplash.com/photo-1505228395891-9a51e7e86bf6')",
+                }}
+              ></div>
               <h3>Relax en la Playa</h3>
-              <p>Hoteles de lujo frente al mar con todo incluido para tu máximo relax.</p>
+              <p>
+                Hoteles de lujo frente al mar con todo incluido para tu máximo
+                relax.
+              </p>
               <div className="package-price">$1,299 USD</div>
               <button className="package-btn">Más Información</button>
             </div>
 
             <div className="package-card">
-              <div className="package-image" style={{ backgroundImage: "url('https://images.unsplash.com/photo-1538964173425-93884d739596')" }}></div>
+              <div
+                className="package-image"
+                style={{
+                  backgroundImage:
+                    "url('https://images.unsplash.com/photo-1538964173425-93884d739596')",
+                }}
+              ></div>
               <h3>Cultural & Gastronómico</h3>
-              <p>Descubre la rica cultura y gastronomía de la región con expertos locales.</p>
+              <p>
+                Descubre la rica cultura y gastronomía de la región con expertos
+                locales.
+              </p>
               <div className="package-price">$1,099 USD</div>
               <button className="package-btn">Más Información</button>
             </div>
@@ -143,128 +184,155 @@ function LandingPage() {
 
       {/* Testimonials Section */}
       {/* Sección de Contacto con Diseño Elegante */}
-<section id="contact" className="contact-section">
-  <div className="contact-background">
-    <div className="contact-overlay"></div>
-  </div>
-  
-  <div className="contact-container">
-    <div className="contact-card">
-      <div className="contact-header">
-        <h2 className="section-title">Contáctanos</h2>
-        <p className="section-subtitle">¿Listo para tu próxima aventura? Escríbenos y te ayudaremos a planificarla.</p>
-      </div>
-
-      <form onSubmit={handleSubmit} className="contact-form" noValidate>
-        <div className="form-grid">
-          <div className="form-group">
-            <input
-              type="text"
-              id="nombreCompleto"
-              name="nombreCompleto"
-              placeholder=" "
-              value={formData.nombreCompleto}
-              onChange={handleChange}
-              required
-              disabled={submitStatus.loading}
-              className="floating-input"
-            />
-            <label htmlFor="nombreCompleto" className="floating-label">Nombre completo*</label>
-          </div>
-
-          <div className="form-group">
-            <input
-              type="email"
-              id="correo"
-              name="correo"
-              placeholder=" "
-              value={formData.correo}
-              onChange={handleChange}
-              required
-              disabled={submitStatus.loading}
-              className="floating-input"
-            />
-            <label htmlFor="correo" className="floating-label">Correo electrónico*</label>
-          </div>
-
-          <div className="form-group">
-            <input
-              type="tel"
-              id="telefono"
-              name="telefono"
-              placeholder=" "
-              value={formData.telefono}
-              onChange={handleChange}
-              required
-              disabled={submitStatus.loading}
-              className="floating-input"
-            />
-            <label htmlFor="telefono" className="floating-label">Teléfono*</label>
-          </div>
-
-          <div className="form-group full-width">
-            <textarea
-              id="mensaje"
-              name="mensaje"
-              rows="4"
-              placeholder=" "
-              value={formData.mensaje}
-              onChange={handleChange}
-              required
-              disabled={submitStatus.loading}
-              className="floating-input"
-            ></textarea>
-            <label htmlFor="mensaje" className="floating-label">Tu mensaje*</label>
-          </div>
+      <section id="contact" className="contact-section">
+        <div className="contact-background">
+          <div className="contact-overlay"></div>
         </div>
 
-        <button
-          type="submit"
-          className="submit-btn"
-          disabled={submitStatus.loading}
-        >
-          {submitStatus.loading ? (
-            <>
-              <i className="fas fa-spinner fa-spin"></i> Enviando...
-            </>
-          ) : (
-            <>
-              <i className="fas fa-paper-plane"></i> Enviar Mensaje
-            </>
-          )}
-        </button>
+        <div className="contact-container">
+          <div className="contact-card">
+            <div className="contact-header">
+              <h2 className="section-title">Contáctanos</h2>
+              <p className="section-subtitle">
+                ¿Listo para tu próxima aventura? Escríbenos y te ayudaremos a
+                planificarla.
+              </p>
+            </div>
 
-        {submitStatus.error && (
-          <div className="alert error">
-            <i className="fas fa-exclamation-circle"></i> {submitStatus.error}
+            <form onSubmit={handleSubmit} className="contact-form" noValidate>
+              <div className="form-flex">
+                <div className="form-group">
+                  <input
+                    type="text"
+                    id="nombreCompleto"
+                    name="nombreCompleto"
+                    placeholder=" "
+                    value={formData.nombreCompleto}
+                    onChange={handleChange}
+                    required
+                    disabled={submitStatus.loading}
+                    className="floating-input"
+                  />
+                  <label htmlFor="nombreCompleto" className="floating-label">
+                    Nombre completo*
+                  </label>
+                </div>
+
+                <div className="form-group">
+                  <input
+                    type="email"
+                    id="correo"
+                    name="correo"
+                    placeholder=" "
+                    value={formData.correo}
+                    onChange={handleChange}
+                    required
+                    disabled={submitStatus.loading}
+                    className="floating-input"
+                  />
+                  <label htmlFor="correo" className="floating-label">
+                    Correo electrónico*
+                  </label>
+                </div>
+
+                <div className="form-group">
+                  <input
+                    type="tel"
+                    id="telefono"
+                    name="telefono"
+                    placeholder=" "
+                    value={formData.telefono}
+                    onChange={handleChange}
+                    required
+                    disabled={submitStatus.loading}
+                    className="floating-input"
+                  />
+                  <label htmlFor="telefono" className="floating-label">
+                    Teléfono*
+                  </label>
+                </div>
+
+                <div className="form-group full-width">
+                  <textarea
+                    id="mensaje"
+                    name="mensaje"
+                    rows="4"
+                    placeholder=" "
+                    value={formData.mensaje}
+                    onChange={handleChange}
+                    required
+                    disabled={submitStatus.loading}
+                    className="floating-input"
+                  ></textarea>
+                  <label htmlFor="mensaje" className="floating-label">
+                    Tu mensaje*
+                  </label>
+                </div>
+              </div>
+
+              <button
+                type="submit"
+                className="submit-btn"
+                disabled={submitStatus.loading}
+              >
+                {submitStatus.loading ? (
+                  <>
+                    <i className="fas fa-spinner fa-spin"></i> Enviando...
+                  </>
+                ) : (
+                  <>
+                    <i className="fas fa-paper-plane"></i> Enviar Mensaje
+                  </>
+                )}
+              </button>
+
+              {submitStatus.error && (
+                <div className="alert error">
+                  <i className="fas fa-exclamation-circle"></i>{" "}
+                  {submitStatus.error}
+                </div>
+              )}
+              {submitStatus.success && (
+                <div className="alert success">
+                  <i className="fas fa-check-circle"></i> ¡Mensaje enviado con
+                  éxito!
+                </div>
+              )}
+            </form>
           </div>
-        )}
-        {submitStatus.success && (
-          <div className="alert success">
-            <i className="fas fa-check-circle"></i> ¡Mensaje enviado con éxito!
-          </div>
-        )}
-      </form>
-    </div>
-  </div>
-</section>
+        </div>
+      </section>
 
       {/* Footer */}
       <footer className="footer">
         <div className="footer-content">
           <div className="footer-logo">
-            <img src={LogoRT} alt="Riviera Travel Logo" className="footer-logo-img" />
+            <img
+              src={LogoRT}
+              alt="Riviera Travel Logo"
+              className="footer-logo-img"
+            />
             <p>Explora el mundo con nosotros.</p>
           </div>
 
           <div className="footer-links">
             <h3>Enlaces Rápidos</h3>
             <ul>
-              <li><a href="#home">Home</a></li>
-              <li><a href="#about">About</a></li>
-              <li><a href="#packages">Packages</a></li>
-              <li><a href="#blog">Blog</a></li>
-              <li><a href="#contact">Contact</a></li>
+              <li>
+                <a href="#home">Home</a>
+              </li>
+              <li>
+                <a href="#about">About</a>
+              </li>
+              <li>
+                <a href="#packages">Packages</a>
+              </li>
+              <li>
+                <a href="#blog">Blog</a>
+              </li>
+              <li>
+                <a href="#contact">Contact</a>
+              </li>
             </ul>
           </div>
 
@@ -277,10 +345,12 @@ function LandingPage() {
         </div>
 
         <div className="footer-bottom">
-          <p>&copy; {new Date().getFullYear()} Riviera Travel. Todos los derechos reservados.</p>
+          <p>
+            &copy; {new Date().getFullYear()} Riviera Travel. Todos los derechos
+            reservados.
+          </p>
         </div>
       </footer>
-
     </div>
   );
 }

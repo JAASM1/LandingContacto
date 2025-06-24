@@ -1,3 +1,24 @@
+# Frontend - Contactos Landing Page
+- **Diseño con React**
+- **Css**
+
+## 🛠️ Instalación
+1. **Navega a la ruta del archivo front**
+```bash
+cd front
+```
+
+2. **Instalar dependencias**
+```bash
+npm install
+```
+
+3. **Ejecutar el servidor**
+```bash
+npm run dev
+```
+
+----------------------------------------------
 # Backend - Contactos Landing Page
 
 Backend para gestionar solicitudes de contacto.

@@ -2,8 +2,18 @@ import { useState } from "react";
 import "./Landing.css";
 import LogoRT from "./images/LogoRT.png";
 import fondoLanding from "./images/fondolanding.png";
+import Modal from "react-modal";
+import ReCAPTCHA from "react-google-recaptcha";
 
 function LandingPage() {
+  const [modalAbierto, setModalAbierto] = useState(false);
+  const [aceptoTerminos, setAceptoTerminos] = useState(false);
+  const [captchaValido, setCaptchaValido] = useState(null);
+
+  const handleCaptchaChange = (token) => {
+    setCaptchaValido(token); // guarda el token en vez de un booleano
+  };
+
   const [formData, setFormData] = useState({
     nombreCompleto: "",
     correo: "",
@@ -30,10 +40,10 @@ function LandingPage() {
     setSubmitStatus({ loading: true, error: null });
 
     try {
-      const response = await fetch("http://localhost:3000/api/contact", {
+      const response = await fetch("http://localhost:8080/api/contact", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(formData),
+        body: JSON.stringify({...formData, tokenCaptcha: captchaValido}),
       });
 
       if (!response.ok) {
@@ -269,6 +279,36 @@ function LandingPage() {
                   </label>
                 </div>
               </div>
+
+              <label>
+                <input
+                  type="checkbox"
+                  checked={aceptoTerminos}
+                  onChange={() => setAceptoTerminos(!aceptoTerminos)}
+                />
+                Acepto los{" "}
+                <button
+                  className="terms-conditions"
+                  type="button"
+                  onClick={() => setModalAbierto(true)}
+                >
+                  términos y condiciones
+                </button>
+              </label>
+
+              <ReCAPTCHA
+                sitekey="6LdZaGsrAAAAAKMT5MqIiixptdWd78pzNd2I8uMq"
+                onChange={handleCaptchaChange}
+              />
+
+              <Modal
+                isOpen={modalAbierto}
+                onRequestClose={() => setModalAbierto(false)}
+              >
+                <h2>Términos y Condiciones</h2>
+                <p>Aquí van tus términos y condiciones...</p>
+                <button onClick={() => setModalAbierto(false)}>Cerrar</button>
+              </Modal>
 
               <button
                 type="submit"

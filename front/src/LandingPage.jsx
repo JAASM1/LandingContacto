@@ -43,7 +43,7 @@ function LandingPage() {
       const response = await fetch("http://localhost:8080/api/contact", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({...formData, tokenCaptcha: captchaValido}),
+        body: JSON.stringify({ ...formData, tokenCaptcha: captchaValido }),
       });
 
       if (!response.ok) {
@@ -280,35 +280,64 @@ function LandingPage() {
                 </div>
               </div>
 
-              <label>
+              <div className="checkbox-container">
                 <input
                   type="checkbox"
+                  id="acepto"
                   checked={aceptoTerminos}
                   onChange={() => setAceptoTerminos(!aceptoTerminos)}
+                  className="styled-checkbox"
                 />
-                Acepto los{" "}
-                <button
-                  className="terms-conditions"
-                  type="button"
-                  onClick={() => setModalAbierto(true)}
-                >
-                  términos y condiciones
-                </button>
-              </label>
+                <label htmlFor="acepto" className="checkbox-label">
+                  Acepto los{" "}
+                  <button
+                    type="button"
+                    className="terms-link"
+                    onClick={() => setModalAbierto(true)}
+                  >
+                    términos y condiciones
+                  </button>
+                </label>
+              </div>
 
-              <ReCAPTCHA
-                sitekey="6LdZaGsrAAAAAKMT5MqIiixptdWd78pzNd2I8uMq"
-                onChange={handleCaptchaChange}
-              />
+              <div className="captcha-container">
+                <ReCAPTCHA
+                  sitekey="6LdZaGsrAAAAAKMT5MqIiixptdWd78pzNd2I8uMq"
+                  onChange={handleCaptchaChange}
+                />
+              </div>
 
+
+
+              {/* Modal */}
               <Modal
                 isOpen={modalAbierto}
                 onRequestClose={() => setModalAbierto(false)}
+                className="modal-content"
+                overlayClassName="modal-overlay"
               >
-                <h2>Términos y Condiciones</h2>
-                <p>Aquí van tus términos y condiciones...</p>
-                <button onClick={() => setModalAbierto(false)}>Cerrar</button>
+                <div className="modal-inner">
+                  <h2 className="section-title">Términos y Condiciones</h2>
+                  <p className="modal-text">
+                    Bienvenido a nuestro sitio web de recomendaciones turísticas. Al utilizar esta página, aceptas los siguientes términos y condiciones:
+                  </p>
+                  <ul className="modal-list">
+                    <li><strong>Uso del sitio:</strong> Este sitio proporciona información sobre lugares turísticos con fines informativos y de planificación personal. No somos responsables por cambios en horarios, precios u otra información publicada.</li>
+                    <li><strong>Contenido:</strong> Todo el contenido es propiedad del sitio o de sus respectivos autores. No se permite copiar, distribuir o modificar el contenido sin autorización previa.</li>
+                    <li><strong>Reservas y servicios externos:</strong> No gestionamos reservas ni somos responsables de servicios ofrecidos por terceros, como hoteles, agencias o guías turísticos.</li>
+                    <li><strong>Privacidad:</strong> No recopilamos información personal sin tu consentimiento. Cualquier dato proporcionado se manejará conforme a nuestra política de privacidad.</li>
+                    <li><strong>Modificaciones:</strong> Nos reservamos el derecho de modificar estos términos en cualquier momento. El uso continuado del sitio implica la aceptación de dichos cambios.</li>
+                  </ul>
+                  <p className="modal-text">
+                    Si no estás de acuerdo con alguno de estos términos, por favor, no utilices el sitio. ¡Gracias por visitarnos y feliz viaje!
+                  </p>
+                  <button className="submit-btn" onClick={() => setModalAbierto(false)}>
+                    Cerrar
+                  </button>
+                </div>
               </Modal>
+
+
 
               <button
                 type="submit"

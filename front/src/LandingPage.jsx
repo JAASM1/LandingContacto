@@ -1,7 +1,6 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
 import "./Landing.css";
 import LogoRT from "./images/LogoRT.png";
-import fondoLanding from "./images/fondolanding.png";
 import Modal from "react-modal";
 import ReCAPTCHA from "react-google-recaptcha";
 
@@ -35,9 +34,26 @@ function LandingPage() {
     }));
   };
 
+  const recaptchaRef = useRef(null);
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     setSubmitStatus({ loading: true, error: null });
+
+    if (!aceptoTerminos) {
+      setSubmitStatus({
+        error: "Debes aceptar los términos y condiciones",
+        loading: false,
+      });
+      return;
+    }
+    if (!captchaValido) {
+      setSubmitStatus({
+        error: "Por favor completa la verificación reCAPTCHA",
+        loading: false,
+      });
+      return;
+    }
 
     try {
       const response = await fetch("http://localhost:8080/api/contact", {
@@ -59,6 +75,11 @@ function LandingPage() {
         telefono: "",
         mensaje: "",
       });
+      setAceptoTerminos(false);
+      setCaptchaValido(null);
+      if (recaptchaRef.current) {
+        recaptchaRef.current.reset();
+      }
     } catch (error) {
       console.error("Error completo:", error);
       setSubmitStatus({
@@ -302,8 +323,11 @@ function LandingPage() {
 
               <div className="captcha-container">
                 <ReCAPTCHA
+                  ref={recaptchaRef}
                   sitekey="6LdZaGsrAAAAAKMT5MqIiixptdWd78pzNd2I8uMq"
                   onChange={handleCaptchaChange}
+                  theme="light" // o "dark"
+                  size="normal" // o "compact"
                 />
               </div>
 

@@ -56,7 +56,7 @@ function LandingPage() {
     }
 
     try {
-      const response = await fetch("http://localhost:3000/api/contact", {
+      const response = await fetch(`http://localhost:${import.meta.env.VITE_PORT}/api/contact`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ ...formData, tokenCaptcha: captchaValido }),

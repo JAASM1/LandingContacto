@@ -25,6 +25,13 @@ body {
   background-color: var(--white);
 }
 
+.icon-login{
+  width: 20px;
+  background-size: cover;
+  background-position: center;
+  display: inline-block;
+}
+
 .landing-page {
   max-width: 100%;
   overflow-x: hidden;
@@ -131,9 +138,8 @@ body {
   background-color: var(--primary-color);
   color: var(--white);
   border: none;
-  padding: 0.8rem 1.5rem;
-  border-radius: 30px;
-  font-weight: 600;
+  padding: 8px 12px;
+  border-radius: 100%;
   cursor: pointer;
   transition: var(--transition);
   box-shadow: 0 4px 6px rgba(0, 123, 255, 0.2);

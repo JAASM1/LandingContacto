@@ -56,11 +56,14 @@ function LandingPage() {
     }
 
     try {
-      const response = await fetch(`http://localhost:${import.meta.env.VITE_PORT}/api/contact`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ ...formData, tokenCaptcha: captchaValido }),
-      });
+      const response = await fetch(
+        `http://localhost:${import.meta.env.VITE_PORT}/api/contact`,
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ ...formData, tokenCaptcha: captchaValido }),
+        }
+      );
 
       if (!response.ok) {
         const errorData = await response.json();
@@ -110,7 +113,22 @@ function LandingPage() {
             <a href="#contact">Contact</a>
           </li>
         </ul>
-        <button className="book-btn">Book Now</button>
+        <a href="http://localhost:5173/login" className="book-btn">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke-width="1.5"
+            stroke="currentColor"
+            class="icon-login"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M15.75 6a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0ZM4.501 20.118a7.5 7.5 0 0 1 14.998 0A17.933 17.933 0 0 1 12 21.75c-2.676 0-5.216-.584-7.499-1.632Z"
+            />
+          </svg>
+        </a>
       </nav>
 
       {/* Hero Section */}
@@ -335,8 +353,6 @@ function LandingPage() {
                 <p>Aquí van tus términos y condiciones...</p>
                 <button onClick={() => setModalAbierto(false)}>Cerrar</button>
               </Modal>
-
-
 
               <button
                 type="submit"

@@ -101,7 +101,7 @@ function LandingPage() {
         </div>
         <ul className="nav-links">
           <li>
-            <a href="#home">Home</a>
+            <a href="/">Home</a>
           </li>
           <li>
             <a href="#about">About</a>
@@ -113,7 +113,7 @@ function LandingPage() {
             <a href="#contact">Contact</a>
           </li>
         </ul>
-        <a href="http://localhost:5173/login" className="book-btn">
+        <a href="/login" className="book-btn">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             fill="none"

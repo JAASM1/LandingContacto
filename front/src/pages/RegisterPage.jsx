@@ -19,7 +19,7 @@ export default function LoginPage() {
     setLoading(true);
 
     try {
-      const res = await fetch(`http://localhost:${import.meta.env.VITE_PORT}/api/register`, {
+      const res = await fetch(`${import.meta.env.VITE_URL}/api/register`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ email, password }),

@@ -12,7 +12,7 @@ export default function DashboardPage() {
 
     const fetchLeads = async () => {
       try {
-        const res = await fetch(`http://localhost:${import.meta.env.VITE_PORT}/api/contacts`, {
+        const res = await fetch(`${import.meta.env.VITE_URL}/api/contacts`, {
           headers: { Authorization: `Bearer ${token}` },
         });
 

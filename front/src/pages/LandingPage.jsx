@@ -57,7 +57,7 @@ function LandingPage() {
 
     try {
       const response = await fetch(
-        `http://localhost:${import.meta.env.VITE_PORT}/api/contact`,
+        `${import.meta.env.VITE_URL}/api/contact`,
         {
           method: "POST",
           headers: { "Content-Type": "application/json" },
@@ -340,7 +340,7 @@ function LandingPage() {
               </div>
 
               <ReCAPTCHA
-                sitekey="6LdZaGsrAAAAAKMT5MqIiixptdWd78pzNd2I8uMq"
+                sitekey="6Lc51HYrAAAAAEXZEuGkwagAxh0rZvNifI-AIJyQ"
                 onChange={handleCaptchaChange}
               />
 

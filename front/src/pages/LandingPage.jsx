@@ -3,6 +3,7 @@ import "../styles/Landing.css";
 import LogoRT from "../images/LogoRT.png";
 import Modal from "react-modal";
 import ReCAPTCHA from "react-google-recaptcha";
+import { Link } from "react-router";
 
 function LandingPage() {
   const [modalAbierto, setModalAbierto] = useState(false);
@@ -56,14 +57,11 @@ function LandingPage() {
     }
 
     try {
-      const response = await fetch(
-        `${import.meta.env.VITE_URL}/api/contact`,
-        {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ ...formData, tokenCaptcha: captchaValido }),
-        }
-      );
+      const response = await fetch(`${import.meta.env.VITE_URL}/api/contact`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ ...formData, tokenCaptcha: captchaValido }),
+      });
 
       if (!response.ok) {
         const errorData = await response.json();
@@ -101,7 +99,9 @@ function LandingPage() {
         </div>
         <ul className="nav-links">
           <li>
-            <a href="/">Home</a>
+            <Link to="/" activeClassName="active-link">
+              Home
+            </Link>
           </li>
           <li>
             <a href="#about">About</a>
@@ -113,7 +113,7 @@ function LandingPage() {
             <a href="#contact">Contact</a>
           </li>
         </ul>
-        <a href="/login" className="book-btn">
+        <Link to="/login" className="book-btn">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             fill="none"
@@ -128,7 +128,7 @@ function LandingPage() {
               d="M15.75 6a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0ZM4.501 20.118a7.5 7.5 0 0 1 14.998 0A17.933 17.933 0 0 1 12 21.75c-2.676 0-5.216-.584-7.499-1.632Z"
             />
           </svg>
-        </a>
+        </Link>
       </nav>
 
       {/* Hero Section */}

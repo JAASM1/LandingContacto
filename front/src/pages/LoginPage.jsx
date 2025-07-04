@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useNavigate, Link } from "react-router-dom";
+import { useNavigate, Link } from "react-router";
 import "../styles/Login.css";
 import GoogleIcon from "../images/google-icon.png";
 import TravelSideImage from "../images/side-login.jpg"; // Imagen de viaje para el lado izquierdo
